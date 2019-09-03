@@ -10,12 +10,6 @@ const UserCard = (props) =>{
         <Card.Meta>{props.user.location}</Card.Meta>
         <Card.Description>{props.user.bio}</Card.Description>
       </Card.Content>
-      <Card.Content>
-        <a>
-          <Icon name='user' />
-          {props.user.followers} Followers
-        </a>
-      </Card.Content>
     </Card>
   )
 }
