@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios';
 import UserCard from './components/UserCard';
 import FollowerCard from './components/FollowerCard';
+import styled from 'styled-components';
 
 export default class App extends Component {
 
@@ -47,18 +48,39 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <UserCard user={this.state.userData} />
-        {this.state.userFollowers.map(follower =>{
-          return <FollowerCard
-            key={follower.id}
-            name={follower.login}
-            photo={follower.avatar_url}
-            location={follower.location}
-            bio={follower.bio}
-          />
-        })}
-      </div>
+      <StyledApp>
+        <div className="App">
+          <div className="userCard">
+            <UserCard user={this.state.userData} />
+          </div>
+          <div className="followerCards">
+            {this.state.userFollowers.map(follower =>{
+              return <FollowerCard
+              name={follower.login}
+              photo={follower.avatar_url}
+              location={follower.location}
+              key={follower.id}
+            />
+            })}
+          </div>
+        </div>
+      </StyledApp>
     );
   }
 }
+
+const StyledApp = styled.div `
+  display: flex;
+  flex-direction: column;
+
+  .userCard{
+    width: 50%;
+    margin: auto;
+  }
+
+  .followerCards{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+`;
